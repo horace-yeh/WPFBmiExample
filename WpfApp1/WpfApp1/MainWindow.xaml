@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
     <Grid ShowGridLines="True">
         <!-- #region 等效宣告語法 -->
         <!-- 宣告語法1 -->     
@@ -46,17 +50,17 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="請輸入身高(單位:公尺)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="請輸入體重(單位:公斤)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="16" Text="123" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="16" Text="123" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="16" Text="{Binding High}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="16" Text="{Binding Weight}" VerticalAlignment="Center"/>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <!--Orientation="Horizontal" 設定水平方向-->
             <!-- Margin 左上右下 -->
             <TextBlock Foreground="Chocolate" FontSize="16" Margin="5,10,0,0" Text="BMI計算結果:"/>
-            <TextBlock Foreground="Chocolate" FontSize="16" Margin="5,10,0,0" Text="123" />
+            <TextBlock Foreground="Chocolate" FontSize="16" Margin="5,10,0,0" Text="{Binding Bmi}" />
         </StackPanel>
         <Grid Grid.Row="2" ShowGridLines="True">
-            <Button Margin="350,50" Content="送出" Background="DarkBlue" Foreground="AliceBlue" FontSize="15" FontWeight="DemiBold"/>
+            <Button Margin="350,50" Content="送出" Command="{Binding BmiCommand}" Background="DarkBlue" Foreground="AliceBlue" FontSize="15" FontWeight="DemiBold"/>
         </Grid>
     </Grid>
 </Window>
